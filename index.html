@@ -1,309 +1,223 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QXV SHOP</title>
 
 <style>
-:root{
-  --bg:#08090b;
-  --card:#121419;
-  --gold:#d6a84f;
-  --gold2:#f0c96b;
-  --text:#f5f5f5;
-  --muted:#a6a6aa;
-  --line:#252830;
+*{
+  box-sizing:border-box;
 }
-
-*{box-sizing:border-box}
-
-html{scroll-behavior:smooth}
 
 body{
   margin:0;
-  background:var(--bg);
-  color:var(--text);
   font-family:Arial,sans-serif;
+  background:
+    radial-gradient(circle at top,#2b2412 0,#08090b 38%);
+  color:#fff;
 }
 
 header{
-  position:sticky;
-  top:0;
-  background:rgba(8,9,11,.94);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);
-  z-index:5;
-}
-
-.nav{
-  max-width:1100px;
-  margin:auto;
-  padding:18px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  padding:32px 18px;
+  text-align:center;
+  background:linear-gradient(135deg,#181818,#08090b);
+  border-bottom:1px solid #806b32;
 }
 
 .logo{
-  font-size:28px;
-  font-weight:900;
+  font-size:38px;
+  font-weight:bold;
   letter-spacing:2px;
-  color:var(--gold);
+  color:#f0c96b;
+  text-shadow:0 0 18px #f0c96b55;
 }
 
-nav a{
-  color:#ddd;
-  text-decoration:none;
-  margin-left:22px;
-  font-size:14px;
+.subtitle{
+  margin-top:10px;
+  color:#c9c9c9;
+  font-size:15px;
 }
 
-nav a:hover{color:var(--gold)}
-
-.hero{
-  max-width:1100px;
+.container{
+  max-width:900px;
   margin:auto;
-  padding:85px 22px 65px;
-  text-align:center;
-}
-
-.badge{
-  display:inline-block;
-  border:1px solid #6d5428;
-  color:var(--gold);
-  padding:8px 15px;
-  border-radius:30px;
-  font-size:12px;
-  letter-spacing:2px;
-}
-
-h1{
-  font-size:54px;
-  margin:20px 0 12px;
-  line-height:1.05;
-}
-
-h1 span{color:var(--gold)}
-
-.hero p{
-  color:var(--muted);
-  font-size:18px;
-  line-height:1.6;
-  max-width:650px;
-  margin:0 auto 30px;
-}
-
-.btn{
-  display:inline-block;
-  background:var(--gold);
-  color:#08090b;
-  padding:14px 25px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:800;
-  transition:.2s;
-}
-
-.btn:hover{
-  background:var(--gold2);
-  transform:translateY(-2px);
-}
-
-.section{
-  max-width:1100px;
-  margin:auto;
-  padding:35px 22px 75px;
-}
-
-.title{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  margin-bottom:24px;
+  padding:28px 15px;
 }
 
 h2{
-  font-size:30px;
-  margin:0;
+  text-align:center;
+  color:#f0c96b;
+  margin-bottom:25px;
+  font-size:27px;
 }
 
-.muted{color:var(--muted)}
-
-.grid{
+.products{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
 }
 
 .card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:17px;
-  overflow:hidden;
-  transition:.25s;
-}
-
-.card:hover{
-  transform:translateY(-5px);
-  border-color:#6d5428;
-  box-shadow:0 15px 35px rgba(0,0,0,.35);
-}
-
-.pic{
-  height:220px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:
-    radial-gradient(circle at 50% 40%,#29251c,#111216 65%);
-  color:#777;
-}
-
-.pic b{
-  font-size:45px;
-  color:#625536;
-}
-
-.body{padding:18px}
-
-.body h3{
-  margin:0 0 8px;
-  font-size:19px;
-}
-
-.price{
-  color:var(--gold);
-  font-weight:800;
-  font-size:19px;
-}
-
-.order{
-  margin-top:15px;
-  width:100%;
-  border:0;
-  background:#eee;
-  color:#111;
-  padding:12px;
-  border-radius:9px;
-  font-weight:800;
-  cursor:pointer;
+  background:linear-gradient(145deg,#17191e,#0e0f12);
+  border:1px solid #66552b;
+  border-radius:20px;
+  padding:16px;
+  text-align:center;
+  box-shadow:0 8px 25px #0008;
   transition:.2s;
 }
 
-.order:hover{
-  background:var(--gold);
+.card:active{
+  transform:scale(.98);
 }
 
-.box{
-  background:linear-gradient(145deg,#16171b,#0e0f12);
-  border:1px solid #6d5428;
-  border-radius:18px;
-  padding:32px 25px;
+.product-img{
+  height:135px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:70px;
+  background:linear-gradient(145deg,#242016,#15161a);
+  border:1px solid #514524;
+  border-radius:16px;
+  margin-bottom:15px;
+}
+
+.name{
+  font-size:18px;
+  font-weight:bold;
+  margin:9px 0;
+}
+
+.price{
+  color:#f0c96b;
+  font-size:20px;
+  font-weight:bold;
+  margin:13px 0;
+}
+
+button{
+  width:100%;
+  border:0;
+  border-radius:13px;
+  padding:13px 8px;
+  background:linear-gradient(135deg,#f5d47c,#c99b35);
+  color:#111;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 4px 12px #f0c96b33;
+}
+
+button:active{
+  transform:scale(.96);
+}
+
+.info{
+  margin-top:30px;
+  background:linear-gradient(145deg,#17191e,#0e0f12);
+  border-radius:20px;
+  padding:23px 18px;
   text-align:center;
+  border:1px solid #66552b;
 }
 
-.box h2{
-  color:var(--gold);
+.info h3{
+  color:#f0c96b;
+  font-size:21px;
+}
+
+.info p{
+  color:#ccc;
+}
+
+.founder{
+  margin-top:18px;
+  padding:22px 15px;
+  text-align:center;
+  background:linear-gradient(145deg,#19160f,#0d0e10);
+  border:1px solid #806b32;
+  border-radius:20px;
+  box-shadow:0 8px 25px #0007;
+}
+
+.founder-title{
+  color:#f0c96b;
+  font-size:16px;
+  font-weight:bold;
+  letter-spacing:1px;
   margin-bottom:10px;
 }
 
-.box p{
-  color:var(--muted);
-  line-height:1.6;
+.founder-name{
+  color:#fff;
+  font-size:18px;
+  font-weight:bold;
+  line-height:1.5;
+}
+
+.call-center{
+  margin-top:18px;
+  padding:24px 15px;
+  text-align:center;
+  background:linear-gradient(135deg,#f0c96b,#a9791f);
+  border-radius:20px;
+  color:#111;
+  box-shadow:0 8px 25px #f0c96b33;
+}
+
+.call-title{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.call-center a{
+  color:#111;
+  font-size:24px;
+  font-weight:bold;
+  text-decoration:none;
 }
 
 footer{
-  border-top:1px solid var(--line);
-  padding:30px 22px;
   text-align:center;
-  color:var(--muted);
+  padding:28px 15px;
+  color:#888;
+  font-size:13px;
 }
 
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.78);
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:10;
-}
+@media(max-width:500px){
 
-.modal-box{
-  width:100%;
-  max-width:420px;
-  background:#15171c;
-  border:1px solid #6d5428;
-  border-radius:18px;
-  padding:25px;
-  position:relative;
-  text-align:center;
-}
-
-.modal-box h2{
-  color:var(--gold);
-  margin-top:5px;
-}
-
-.close{
-  position:absolute;
-  right:16px;
-  top:10px;
-  font-size:28px;
-  color:#aaa;
-  cursor:pointer;
-}
-
-.close:hover{color:white}
-
-.modal-box input{
-  width:100%;
-  padding:14px;
-  margin:7px 0;
-  border-radius:9px;
-  border:1px solid #333;
-  background:#0b0c0f;
-  color:white;
-  outline:none;
-}
-
-.modal-box button{
-  width:100%;
-  margin-top:10px;
-  padding:14px;
-  border:0;
-  border-radius:9px;
-  background:var(--gold);
-  font-weight:800;
-  cursor:pointer;
-}
-
-@media(max-width:750px){
-  .nav{
-    padding:15px 18px;
+  .products{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
   }
 
-  .logo{font-size:23px}
-
-  nav a{
-    margin-left:10px;
-    font-size:12px;
+  .product-img{
+    height:105px;
+    font-size:55px;
   }
 
-  h1{font-size:42px}
-
-  .hero{
-    padding-top:65px;
+  .card{
+    padding:12px;
   }
 
-  .grid{
-    grid-template-columns:1fr;
+  .name{
+    font-size:15px;
   }
 
-  .title{
-    display:block;
+  .price{
+    font-size:17px;
+  }
+
+  button{
+    font-size:13px;
+    padding:12px 5px;
+  }
+
+  .logo{
+    font-size:32px;
   }
 }
 </style>
@@ -312,157 +226,126 @@ footer{
 <body>
 
 <header>
-  <div class="nav">
-    <div class="logo">QXV SHOP</div>
-
-    <nav>
-      <a href="#home">Bosh sahifa</a>
-      <a href="#shop">Mahsulotlar</a>
-      <a href="#contact">Aloqa</a>
-    </nav>
+  <div class="logo">QXV SHOP</div>
+  <div class="subtitle">
+    Sifatli mahsulotlar • Qulay narxlar • O‘zbekiston bo‘ylab
   </div>
 </header>
 
-<section class="hero" id="home">
+<div class="container">
 
-  <div class="badge">ONLINE SHOP</div>
+<h2>🛍 MAHSULOTLAR</h2>
 
-  <h1>
-    Sifatli mahsulotlar<br>
-    <span>QXV SHOP</span>da
-  </h1>
+<div class="products">
 
-  <p>
-    Zamonaviy, chiroyli va sifatli mahsulotlarni
-    qulay narxlarda toping. Buyurtma berish juda oson.
-  </p>
+<div class="card">
+  <div class="product-img">⌚</div>
+  <div class="name">Smart Watch</div>
+  <div class="price">149 000 so'm</div>
+  <button onclick="order('Smart Watch')">
+    🛒 Buyurtma berish
+  </button>
+</div>
 
-  <a href="#shop" class="btn">Mahsulotlarni ko‘rish</a>
+<div class="card">
+  <div class="product-img">🎧</div>
+  <div class="name">Bluetooth Quloqchin</div>
+  <div class="price">89 000 so'm</div>
+  <button onclick="order('Bluetooth Quloqchin')">
+    🛒 Buyurtma berish
+  </button>
+</div>
 
-</section>
+<div class="card">
+  <div class="product-img">🔋</div>
+  <div class="name">Power Bank</div>
+  <div class="price">119 000 so'm</div>
+  <button onclick="order('Power Bank')">
+    🛒 Buyurtma berish
+  </button>
+</div>
 
-<section class="section" id="shop">
+<div class="card">
+  <div class="product-img">💡</div>
+  <div class="name">LED Chiroq</div>
+  <div class="price">69 000 so'm</div>
+  <button onclick="order('LED Chiroq')">
+    🛒 Buyurtma berish
+  </button>
+</div>
 
-  <div class="title">
-    <div>
-      <h2>Mahsulotlar</h2>
-      <div class="muted">Siz uchun tanlangan mahsulotlar</div>
-    </div>
-  </div>
+<div class="card">
+  <div class="product-img">📱</div>
+  <div class="name">Telefon aksessuari</div>
+  <div class="price">49 000 so'm</div>
+  <button onclick="order('Telefon aksessuari')">
+    🛒 Buyurtma berish
+  </button>
+</div>
 
-  <div class="grid">
-
-    <div class="card">
-      <div class="pic"><b>QXV</b></div>
-      <div class="body">
-        <h3>Premium mahsulot</h3>
-        <div class="price">Narxi: kelishiladi</div>
-        <button class="order" onclick="openModal('Premium mahsulot')">
-          Buyurtma berish
-        </button>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="pic"><b>SHOP</b></div>
-      <div class="body">
-        <h3>Zamonaviy mahsulot</h3>
-        <div class="price">Narxi: kelishiladi</div>
-        <button class="order" onclick="openModal('Zamonaviy mahsulot')">
-          Buyurtma berish
-        </button>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="pic"><b>NEW</b></div>
-      <div class="body">
-        <h3>Yangi mahsulot</h3>
-        <div class="price">Narxi: kelishiladi</div>
-        <button class="order" onclick="openModal('Yangi mahsulot')">
-          Buyurtma berish
-        </button>
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-<section class="section" id="contact">
-
-  <div class="box">
-    <h2>QXV SHOP</h2>
-
-    <p>
-      Bizning do‘konimizda yangi va sifatli mahsulotlar
-      sizni kutmoqda.
-    </p>
-
-    <a class="btn" href="https://instagram.com/" target="_blank">
-      Instagram
-    </a>
-  </div>
-
-</section>
-
-<footer>
-  © 2026 QXV SHOP — Barcha huquqlar himoyalangan
-</footer>
-
-<div class="modal" id="modal">
-
-  <div class="modal-box">
-
-    <div class="close" onclick="closeModal()">×</div>
-
-    <h2>Buyurtma berish</h2>
-
-    <p id="productName" class="muted"></p>
-
-    <input type="text" placeholder="Ismingiz">
-
-    <input type="tel" placeholder="Telefon raqamingiz">
-
-    <button onclick="sendOrder()">
-      Buyurtmani yuborish
-    </button>
-
-  </div>
+<div class="card">
+  <div class="product-img">🎒</div>
+  <div class="name">Mini Sumka</div>
+  <div class="price">129 000 so'm</div>
+  <button onclick="order('Mini Sumka')">
+    🛒 Buyurtma berish
+  </button>
+</div>
 
 </div>
 
+<div class="info">
+  <h3>📦 YETKAZIB BERISH</h3>
+  <p>O‘zbekiston bo‘ylab yetkazib berish mavjud.</p>
+  <p>🚚 Buyurtmangizni qulay va tez yetkazib beramiz.</p>
+  <p>💬 Buyurtma uchun Call Center bilan bog‘laning.</p>
+</div>
+
+<div class="founder">
+  <div class="founder-title">
+    👑 ASOSCHI
+  </div>
+
+  <div class="founder-name">
+    QOBILJONOV XOJIAKBAR<br>
+    VOXIDJONOVICH
+  </div>
+</div>
+
+<div class="call-center">
+  <div class="call-title">
+    📞 CALL CENTER
+  </div>
+
+  <a href="tel:+998906101976">
+    +998 90 610 19 76
+  </a>
+</div>
+
+</div>
+
+<footer>
+  © 2026 QXV SHOP • Barcha huquqlar himoyalangan
+</footer>
+
 <script>
+function order(product){
 
-function openModal(product){
+  const phone = "+998906101976";
 
-  document.getElementById("modal").style.display="flex";
+  const message =
+    "Assalomu alaykum! QXV SHOP dan " +
+    product +
+    " mahsulotiga buyurtma bermoqchiman.";
 
-  document.getElementById("productName").innerText =
-    "Tanlangan mahsulot: " + product;
-}
-
-function closeModal(){
-
-  document.getElementById("modal").style.display="none";
-}
-
-function sendOrder(){
-
-  alert("Buyurtmangiz qabul qilindi! Tez orada siz bilan bog‘lanamiz.");
-
-  closeModal();
-}
-
-window.onclick=function(event){
-
-  let modal=document.getElementById("modal");
-
-  if(event.target===modal){
-    closeModal();
+  if(confirm(
+    "Siz " + product +
+    " mahsulotini tanladingiz.\n\n" +
+    "Buyurtma berish uchun Call Center ga qo‘ng‘iroq qilasizmi?"
+  )){
+    window.location.href = "tel:" + phone;
   }
 }
-
 </script>
 
 </body>
