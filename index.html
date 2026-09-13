@@ -1,668 +1,954 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#050403">
-<title>QXV SHOP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>QXV SHOP — Premium</title>
 
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
- margin:0;background:#030303;color:#fff;
- font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif
+margin:0;
+background:#050505;
+color:#f7f0dc;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif
+}
+:root{
+--gold:#e7b943;
+--light:#fff0a8;
+--dark:#050505;
+--panel:#0e0d0a;
 }
 a{text-decoration:none;color:inherit}
-button,input,textarea{font:inherit}
+button{font:inherit;cursor:pointer}
 
-:root{
- --gold:#f7cf61;
- --gold2:#fff0ae;
- --dark:#050403;
+/* 8 SONIYALIK INTRO */
+#intro{
+position:fixed;
+inset:0;
+z-index:9999;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+background:
+radial-gradient(circle at 50% 40%,#3b2508 0%,#100b04 30%,#020202 78%);
+transition:.8s;
 }
-
-#loader{
- position:fixed;inset:0;z-index:99999;overflow:hidden;
- background:#050301;display:flex;align-items:center;
- justify-content:center;transition:opacity .8s,visibility .8s
+#intro.hide{
+opacity:0;
+visibility:hidden;
+pointer-events:none;
 }
-#loader.out{
- opacity:0;visibility:hidden;pointer-events:none
+.stars{
+position:absolute;
+inset:0;
+background-image:radial-gradient(#ffe9a0 1px,transparent 1px);
+background-size:80px 80px;
+opacity:.18;
 }
-.loader-bg{
- position:absolute;inset:0;
- background:
- radial-gradient(circle at 72% 30%,rgba(245,182,48,.28),transparent 22%),
- radial-gradient(circle at 28% 80%,rgba(180,98,12,.22),transparent 30%),
- linear-gradient(135deg,#020201,#160b02 50%,#030201)
+.intro-content{
+position:relative;
+z-index:3;
+text-align:center;
 }
-.spark{
- position:absolute;width:3px;height:3px;border-radius:50%;
- background:#ffe59a;box-shadow:0 0 12px #ffc42d;
- animation:twinkle 1.5s infinite alternate
+.q-logo{
+font-size:75px;
+font-weight:950;
+letter-spacing:8px;
+color:var(--light);
+text-shadow:
+0 0 15px #d79b27,
+0 0 45px rgba(236,184,65,.45);
 }
-.s1{left:12%;top:20%}
-.s2{left:78%;top:15%;animation-delay:.3s}
-.s3{left:61%;top:74%;animation-delay:.6s}
-.s4{left:27%;top:62%;animation-delay:.9s}
-
-.loader-center{
- position:relative;z-index:3;text-align:center;margin-top:40px
+.intro-line{
+width:110px;
+height:1px;
+margin:15px auto;
+background:linear-gradient(
+90deg,transparent,var(--gold),transparent
+);
 }
-.loader-bag{
- font-size:45px;filter:drop-shadow(0 0 12px #eeb43a)
+.intro-title{
+font-size:18px;
+letter-spacing:5px;
+color:var(--gold);
 }
-.loader-logo{
- font-size:30px;font-weight:900;letter-spacing:2px;
- color:var(--gold2);text-shadow:0 0 20px #e0a82b
+.intro-sub{
+margin-top:10px;
+color:#cfc29e;
+font-style:italic;
 }
-.loader-sub{
- font-size:17px;font-style:italic;color:#f3e0ae;margin-top:5px
+.counter{
+width:82px;
+height:82px;
+border:2px solid #624719;
+border-top-color:var(--light);
+border-radius:50%;
+margin:28px auto 12px;
+display:grid;
+place-items:center;
+animation:rotate 1s linear infinite;
 }
-.loader-ring{
- width:76px;height:76px;margin:25px auto 10px;
- border:7px solid #594014;border-top-color:#fff1a4;
- border-right-color:#efb932;border-radius:50%;
- animation:spin 1s linear infinite
-}
-#counter{
- font-size:22px;font-weight:800;color:#ffe9a0
-}
-.loading-text{
- margin-top:5px;color:#fff1c4
-}
-
-.gold-bird{
- position:absolute;right:4%;top:7%;
- width:min(55vw,720px);height:330px;
- filter:drop-shadow(0 0 25px rgba(255,190,48,.7));
- animation:birdFloat 3s ease-in-out infinite
-}
-.gb-body{
- position:absolute;left:47%;top:40%;width:76px;height:128px;
- border-radius:52% 48% 45% 55%;
- background:linear-gradient(90deg,#8d4200,#ffdb5e,#b85c00);
- transform:rotate(8deg)
-}
-.gb-head{
- position:absolute;left:50%;top:23%;width:66px;height:66px;
- border-radius:50%;
- background:radial-gradient(circle at 38% 30%,#fff3a4,#efa300 72%,#7b3900)
-}
-.gb-beak{
- position:absolute;left:57%;top:34%;
- border-left:54px solid #ffe078;
- border-top:12px solid transparent;
- border-bottom:12px solid transparent
-}
-.gb-wing{
- position:absolute;top:30%;width:50%;height:125px;
- border-radius:100% 10% 80% 20%;
- background:linear-gradient(18deg,#8e4300,#f8ad16,#fff1a0,#d57400);
- border:2px solid #eab237
-}
-.gb-l{right:49%;transform:rotate(18deg)}
-.gb-r{left:50%;transform:rotate(-15deg)}
-.gb-tail{
- position:absolute;left:37%;top:64%;width:250px;height:130px;
- border-radius:50%;border-bottom:15px solid #ffcb36;
- transform:rotate(18deg);
- box-shadow:0 22px 0 #d87508,0 44px 0 #ffcf43
+#count{
+font-size:25px;
+font-weight:800;
+color:var(--light);
+animation:none;
 }
 
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes birdFloat{50%{transform:translateY(-10px)}}
-@keyframes twinkle{to{opacity:.25;transform:scale(.5)}}
+.bird{
+position:absolute;
+width:330px;
+height:170px;
+right:-60px;
+top:13%;
+filter:drop-shadow(0 0 18px #d59a27);
+opacity:.85;
+animation:bird 4s ease-in-out infinite;
+}
+.bird:before,
+.bird:after{
+content:"";
+position:absolute;
+top:38px;
+width:150px;
+height:78px;
+border:8px solid #d9a331;
+border-top:0;
+border-radius:15% 85% 70% 30%;
+background:linear-gradient(145deg,#fff1a1,#a96805);
+}
+.bird:before{
+left:0;
+transform:rotate(18deg);
+}
+.bird:after{
+right:0;
+transform:scaleX(-1) rotate(18deg);
+}
 
+@keyframes rotate{
+to{transform:rotate(360deg)}
+}
+@keyframes bird{
+50%{transform:translate(35px,-15px) rotate(-5deg)}
+}
+
+/* HEADER */
 header{
- position:sticky;top:0;z-index:100;
- background:rgba(3,3,3,.96);
- border-bottom:1px solid #3c2a0c;
- backdrop-filter:blur(12px)
+position:sticky;
+top:0;
+z-index:100;
+background:rgba(5,5,5,.94);
+backdrop-filter:blur(18px);
+border-bottom:1px solid #30240f;
 }
 .nav{
- height:76px;max-width:1500px;margin:auto;
- padding:0 4%;display:flex;align-items:center;gap:24px
+height:76px;
+max-width:1400px;
+margin:auto;
+padding:0 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
 }
-.brand{
- font-size:29px;font-weight:900;color:#ffe28d;
- white-space:nowrap;text-shadow:0 0 12px #8d5d14
+.logo{
+font-size:25px;
+font-weight:950;
+letter-spacing:2px;
+color:var(--light);
 }
-.menu{
- display:flex;gap:4px;margin:auto;padding:6px;
- background:#090806;border-radius:40px
+.logo span{color:var(--gold)}
+
+nav{
+display:flex;
+gap:4px;
 }
-.menu a{
- padding:12px 22px;border-radius:30px;
- color:#eee0bc;font-size:14px
+nav a{
+padding:11px 18px;
+border-radius:30px;
+font-size:14px;
+color:#c5baa0;
 }
-.menu a.active{
- background:linear-gradient(#fff0b0,#efc44e);
- color:#191004;font-weight:800
-}
-.nav-icons{
- font-size:29px;color:#ffe69a;white-space:nowrap
+nav a:hover,
+nav a.active{
+background:#17130c;
+color:var(--light);
 }
 
+.call-top{
+padding:10px 15px;
+border:1px solid #76571b;
+border-radius:30px;
+font-size:12px;
+color:var(--light);
+}
+
+/* HERO */
 .hero{
- position:relative;min-height:430px;overflow:hidden;
- padding:55px 5%;
- background:
- radial-gradient(circle at 75% 45%,rgba(214,139,24,.22),transparent 28%),
- radial-gradient(circle at 55% 80%,rgba(255,187,37,.13),transparent 35%),
- linear-gradient(115deg,#070605,#1a0d03 55%,#050403)
+min-height:650px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+position:relative;
+overflow:hidden;
+padding:80px 20px;
+background:
+radial-gradient(circle at 50% 40%,#3a2307 0%,transparent 34%),
+linear-gradient(145deg,#050505,#120d05 55%,#050505);
 }
-.hero:after{
- content:"";position:absolute;left:-5%;right:-5%;
- bottom:-90px;height:170px;border-radius:50%;
- border-top:3px solid #c98b22;
- box-shadow:0 -15px 35px rgba(231,166,44,.22);
- transform:rotate(-3deg)
+.hero:before{
+content:"";
+position:absolute;
+width:620px;
+height:620px;
+border:1px solid #604715;
+border-radius:50%;
+box-shadow:0 0 100px rgba(230,175,53,.08);
+animation:pulse 4s infinite;
 }
-.hero-copy{position:relative;z-index:3}
-.eyebrow{
- font-size:18px;font-style:italic;color:#f7dc8e
+.hero-content{
+position:relative;
+z-index:2;
 }
-.hero h1{
- margin:12px 0 5px;
- font-size:clamp(58px,8vw,108px);
- line-height:.9;color:#f7d063;
- text-shadow:0 4px #754809,0 0 25px rgba(255,186,30,.45)
+.kicker{
+color:var(--gold);
+font-size:12px;
+font-weight:700;
+letter-spacing:6px;
 }
-.script{
- font-size:clamp(27px,4vw,55px);
- font-style:italic;color:#fff0ae
+h1{
+font-size:clamp(80px,15vw,175px);
+line-height:.8;
+margin:25px 0 15px;
+letter-spacing:-8px;
+color:#f1ce6e;
+text-shadow:
+0 4px 0 #65420b,
+0 0 45px rgba(235,181,62,.22);
 }
-.hero p{
- max-width:650px;font-size:18px;
- line-height:1.45;color:#efe4c9
+.motto{
+font-family:Georgia,serif;
+font-style:italic;
+font-size:clamp(26px,4vw,48px);
+color:var(--light);
 }
-.hero-features{
- color:#ffe39a;font-size:14px;word-spacing:7px
+.hero-text{
+max-width:680px;
+margin:22px auto;
+line-height:1.7;
+color:#bdb39d;
+font-size:17px;
+}
+.buttons{
+display:flex;
+justify-content:center;
+gap:12px;
+margin-top:30px;
+}
+.btn{
+padding:14px 26px;
+border-radius:30px;
+font-weight:800;
+border:1px solid #73551b;
+}
+.gold{
+background:linear-gradient(135deg,#ffe69c,#c68f21);
+color:#171005;
+box-shadow:0 10px 35px rgba(215,164,47,.18);
+}
+.dark{
+background:#0d0c0a;
+color:var(--light);
 }
 
-.gift-bag{
- position:absolute;z-index:2;right:8%;top:48px;
- width:330px;height:275px;border-radius:9px 9px 35px 35px;
- background:linear-gradient(145deg,#1a1209,#050403);
- border:1px solid #a9751f;
- box-shadow:0 25px 60px #000,0 0 28px rgba(221,156,35,.35);
- transform:rotate(6deg)
+/* VALUES */
+.values{
+max-width:1200px;
+margin:-40px auto 0;
+position:relative;
+z-index:5;
+padding:0 18px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
 }
-.gift-bag:before,.gift-bag:after{
- content:"";position:absolute;top:-62px;
- width:90px;height:95px;
- border:8px solid #e6b53e;
- border-bottom:0;border-radius:60px 60px 0 0
+.value{
+padding:25px 20px;
+text-align:center;
+background:linear-gradient(145deg,#151109,#090807);
+border:1px solid #3f3014;
+border-radius:18px;
 }
-.gift-bag:before{left:62px}
-.gift-bag:after{right:62px}
-.gift-text{
- text-align:center;margin-top:78px;
- font-size:44px;font-weight:900;color:#f6d05d
+.value strong{
+display:block;
+color:var(--light);
+letter-spacing:2px;
+margin-bottom:7px;
 }
-.gift-text small{
- display:block;font-size:26px
+.value span{
+font-size:13px;
+color:#978c73;
 }
 
-.notice{
- position:relative;z-index:4;margin:-1px 3% 0;
- border:2px solid #dcae39;border-radius:25px;
- padding:23px 20px;text-align:center;
- background:radial-gradient(circle,#2b1806,#080604 70%);
- box-shadow:0 0 28px rgba(170,105,15,.28)
+/* PRODUCTS */
+.section{
+max-width:1400px;
+margin:auto;
+padding:90px 5% 20px;
 }
-.notice-title{
- font-size:37px;font-weight:900;color:#ffe395
+.heading{
+text-align:center;
 }
-.soon{
- display:inline-block;margin:0 10px;padding:0 35px;
- font-size:clamp(38px,6vw,70px);
- font-weight:950;font-style:italic;color:#080604;
- background:linear-gradient(
- transparent 12%,#f0c348 12%,#f0c348 88%,transparent 88%);
- transform:rotate(-2deg)
+.over{
+font-size:11px;
+letter-spacing:5px;
+color:var(--gold);
 }
-.notice p{
- font-size:18px;color:#f4ead4
+h2{
+font-size:42px;
+margin:10px 0;
+color:#f3e3b3;
+}
+.heading p{
+color:#958b75;
 }
 
 .products{
- max-width:1500px;margin:auto;padding:35px 4% 20px
-}
-.products-top{
- display:flex;justify-content:space-between;align-items:end
-}
-.products-top small{
- letter-spacing:3px;color:#ddc06d
-}
-.products-top h2{
- font-size:42px;margin:6px 0;color:#fff0be
-}
-.all{
- border:1px solid #e2c15b;border-radius:28px;
- padding:13px 21px;color:#fff0b0
-}
-.grid{
- display:grid;grid-template-columns:repeat(4,1fr);
- gap:22px;margin-top:22px
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+margin-top:35px;
 }
 .card{
- padding:13px;
- background:linear-gradient(145deg,#1a1006,#080604);
- border:1px solid #c8972e;border-radius:17px;
- box-shadow:inset 0 0 30px rgba(98,51,8,.35)
+background:linear-gradient(145deg,#151109,#080807);
+border:1px solid #3c2d14;
+border-radius:20px;
+padding:12px;
+transition:.3s;
+overflow:hidden;
 }
-.pic{
- height:205px;border-radius:12px;
- display:flex;align-items:center;justify-content:center;
- position:relative;overflow:hidden;
- background:radial-gradient(circle at 50% 45%,#5b350b,#0b0805 72%)
+.card:hover{
+transform:translateY(-6px);
+border-color:#8c681f;
+box-shadow:0 18px 45px #000;
 }
-.emoji{
- font-size:95px;filter:drop-shadow(0 12px 12px #000)
+.product-img{
+height:220px;
+border-radius:14px;
+display:grid;
+place-items:center;
+position:relative;
+background:
+radial-gradient(circle at 50% 40%,#392309,#0b0906 70%);
 }
-.tag{
- position:absolute;bottom:12px;left:16px;right:16px;
- padding:8px;background:#f2c957;color:#120d05;
- text-align:center;font-weight:900;
- transform:rotate(-3deg);box-shadow:0 3px 10px #000
+.icon{
+font-size:90px;
+filter:drop-shadow(0 15px 15px #000);
 }
-.card h3{margin:17px 0 4px}
-.price{color:#d8bc76}
+.soon{
+position:absolute;
+bottom:12px;
+left:14px;
+right:14px;
+padding:8px;
+text-align:center;
+border-radius:5px;
+background:#edc558;
+color:#1a1205;
+font-size:11px;
+font-weight:950;
+letter-spacing:2px;
+}
+.card h3{
+margin:17px 4px 5px;
+}
+.price{
+margin:0 4px;
+font-size:13px;
+color:#b6a67c;
+}
 .order{
- width:100%;margin-top:12px;border:0;border-radius:12px;
- padding:12px;background:linear-gradient(#ffe79a,#dca32b);
- color:#1b1204;font-weight:900;cursor:pointer
+width:100%;
+border:0;
+margin-top:14px;
+padding:12px;
+border-radius:11px;
+background:linear-gradient(#ffe59c,#c99225);
+color:#1b1305;
+font-weight:900;
 }
 
+/* PAYMENT */
+.payment{
+margin:80px 5% 0;
+padding:50px 25px;
+text-align:center;
+border:1px solid #6d511b;
+border-radius:25px;
+background:
+radial-gradient(circle at 50% 0,#352007,#0b0906 65%);
+}
+.payment p{
+color:#aaa087;
+}
+.click{
+display:inline-block;
+margin-top:18px;
+padding:15px 30px;
+border-radius:30px;
+background:linear-gradient(135deg,#ffe69d,#d19a2c);
+color:#181106;
+font-weight:950;
+box-shadow:0 8px 25px rgba(222,166,46,.15);
+}
+.click small{
+display:block;
+font-size:9px;
+margin-top:3px;
+letter-spacing:1px;
+}
+
+/* FOOTER */
 footer{
- margin-top:25px;padding:36px 20px 42px;
- text-align:center;
- background:radial-gradient(circle,#211303,#050403);
- border-top:1px solid #715019
+margin-top:80px;
+padding:40px 5%;
+border-top:1px solid #29200f;
+background:#070706;
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:25px;
 }
-.founder-label{
- font-size:12px;letter-spacing:5px;color:#fff0a9
+.footer-logo{
+font-size:25px;
+font-weight:900;
+color:var(--light);
 }
-.founder{
- font-size:21px;font-style:italic;
- color:#fff0b2;margin-top:8px
-}
-.social{
- font-size:27px;letter-spacing:13px;
- color:#ffe18a;margin-top:18px
-}
-.contact-title{
- margin-top:16px;color:#f6d77e
+.call-label{
+font-size:10px;
+letter-spacing:3px;
+color:#82775e;
+margin-top:14px;
 }
 .phone{
- display:inline-block;margin-top:8px;
- color:#ffe28e;font-size:20px
+display:inline-block;
+margin-top:5px;
+font-size:18px;
+font-weight:800;
+color:var(--light);
+}
+.founder{
+text-align:right;
+font-size:10px;
+letter-spacing:1.5px;
+color:#837961;
+}
+.founder b{
+display:block;
+color:#d2b25b;
+margin-bottom:5px;
 }
 
+/* MODAL */
 .modal{
- position:fixed;inset:0;z-index:200;
- background:rgba(0,0,0,.8);
- display:none;align-items:center;
- justify-content:center;padding:20px
+position:fixed;
+inset:0;
+z-index:300;
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
+background:#000b;
 }
 .modal.show{display:flex}
 .box{
- width:min(470px,100%);
- background:#100a04;border:1px solid #dcae39;
- border-radius:22px;padding:24px;
- box-shadow:0 0 50px #000
+width:min(470px,100%);
+padding:25px;
+border-radius:22px;
+background:#100d08;
+border:1px solid #7c5b1c;
 }
 .box h2{
- color:#ffe28c;margin-top:0
+font-size:28px;
 }
-.box input,.box textarea{
- width:100%;padding:13px;margin:6px 0;
- border-radius:10px;border:1px solid #74531b;
- background:#060403;color:#fff;outline:0
+.box input,
+.box textarea{
+width:100%;
+padding:13px;
+margin:6px 0;
+border-radius:10px;
+border:1px solid #403216;
+background:#070605;
+color:white;
+outline:none;
 }
 .actions{
- display:flex;gap:9px;margin-top:8px
+display:flex;
+gap:8px;
+margin-top:10px;
 }
 .actions button{
- flex:1;padding:12px;border:0;
- border-radius:10px;font-weight:800
+flex:1;
+padding:12px;
+border:0;
+border-radius:10px;
+font-weight:800;
 }
-.send{background:#f2c54d}
-.close{background:#292014;color:#fff}
+.send{background:#e9bd4b}
+.close{background:#29231a;color:white}
 
-@media(max-width:850px){
- .menu{display:none}
- .nav{justify-content:space-between}
- .hero{
-  min-height:510px;padding-bottom:260px
- }
- .gift-bag{
-  width:220px;height:180px;
-  top:auto;bottom:20px;right:16%
- }
- .gift-bag:before,.gift-bag:after{
-  top:-43px;width:60px;height:62px;border-width:5px
- }
- .gift-bag:before{left:42px}
- .gift-bag:after{right:42px}
- .gift-text{margin-top:53px;font-size:30px}
- .gift-text small{font-size:18px}
- .grid{grid-template-columns:repeat(2,1fr)}
+@keyframes pulse{
+50%{transform:scale(1.08);opacity:.5}
 }
 
-@media(max-width:520px){
- .nav{height:64px;padding:0 14px}
- .brand{font-size:22px}
- .nav-icons{font-size:23px}
- .hero{padding:34px 20px 235px}
- .hero h1{font-size:54px}
- .hero p{font-size:16px}
- .hero-features{font-size:12px}
- .gift-bag{
-  width:190px;height:145px;right:17%
- }
- .products{padding:30px 14px}
- .products-top h2{font-size:30px}
- .all{padding:10px 14px}
- .grid{gap:10px}
- .card{padding:8px}
- .pic{height:145px}
- .emoji{font-size:68px}
- .tag{
-  left:8px;right:8px;bottom:7px;
-  font-size:11px;padding:6px
- }
- .soon{padding:0 12px}
- .notice{margin:0 10px}
- .notice-title{font-size:29px}
+/* MOBILE */
+@media(max-width:900px){
+nav{display:none}
+.products{
+grid-template-columns:repeat(2,1fr);
+}
+.values{
+grid-template-columns:1fr;
+}
+.hero{
+min-height:600px;
+}
+}
+@media(max-width:560px){
+.nav{
+height:65px;
+padding:0 14px;
+}
+.logo{font-size:21px}
+.call-top{font-size:10px}
+.hero{
+padding:80px 18px;
+}
+.hero:before{
+width:400px;
+height:400px;
+}
+h1{
+font-size:72px;
+letter-spacing:-4px;
+}
+.hero-text{
+font-size:15px;
+}
+.buttons{
+flex-direction:column;
+max-width:270px;
+margin:25px auto;
+}
+.section{
+padding-top:65px;
+}
+h2{
+font-size:32px;
+}
+.products{
+gap:9px;
+}
+.product-img{
+height:145px;
+}
+.icon{
+font-size:62px;
+}
+.card{
+padding:8px;
+}
+.card h3{
+font-size:14px;
+}
+.price{
+font-size:11px;
+}
+.order{
+font-size:12px;
+padding:10px;
+}
+.payment{
+margin:60px 12px 0;
+}
+footer{
+flex-direction:column;
+align-items:center;
+text-align:center;
+}
+.founder{
+text-align:center;
+}
 }
 </style>
 </head>
 
 <body>
 
-<div id="loader">
- <div class="loader-bg"></div>
- <i class="spark s1"></i>
- <i class="spark s2"></i>
- <i class="spark s3"></i>
- <i class="spark s4"></i>
+<!-- INTRO -->
+<div id="intro">
+<div class="stars"></div>
+<div class="bird"></div>
 
- <div class="gold-bird">
-  <div class="gb-wing gb-l"></div>
-  <div class="gb-wing gb-r"></div>
-  <div class="gb-body"></div>
-  <div class="gb-head"></div>
-  <div class="gb-beak"></div>
-  <div class="gb-tail"></div>
- </div>
-
- <div class="loader-center">
-  <div class="loader-bag">🛍️</div>
-  <div class="loader-logo">QXV SHOP</div>
-  <div class="loader-sub">Siz uchun eng yaxshisi!</div>
-  <div class="loader-ring"></div>
-  <div id="counter">8</div>
-  <div class="loading-text">Yuklanmoqda...</div>
- </div>
+<div class="intro-content">
+<div class="q-logo">QXV</div>
+<div class="intro-line"></div>
+<div class="intro-title">
+QADR • XIZMAT • VAFODORLIK
+</div>
+<div class="intro-sub">
+Siz uchun eng yaxshisi
 </div>
 
+<div class="counter">
+<span id="count">8</span>
+</div>
+
+<div style="font-size:10px;letter-spacing:3px;color:#938565">
+YUKLANMOQDA
+</div>
+</div>
+</div>
+
+<!-- HEADER -->
 <header>
- <div class="nav">
-  <a class="brand" href="#home">🛍️ QXV SHOP</a>
+<div class="nav">
 
-  <nav class="menu">
-   <a class="active" href="#home">Bosh sahifa</a>
-   <a href="#products">Mahsulotlar</a>
-   <a href="#contact">Aloqa</a>
-   <a href="#about">Biz haqimizda</a>
-  </nav>
+<a class="logo" href="#home">
+QXV <span>SHOP</span>
+</a>
 
-  <div class="nav-icons">⌕　♡　🛒</div>
- </div>
+<nav>
+<a class="active" href="#home">Bosh sahifa</a>
+<a href="#products">Tovarlar</a>
+<a href="#payment">To‘lov</a>
+<a href="#contact">Aloqa</a>
+</nav>
+
+<a class="call-top" href="tel:+998906101976">
+CALL CENTER
+</a>
+
+</div>
 </header>
 
-<main id="home">
+<!-- HERO -->
+<section class="hero" id="home">
 
-<section class="hero">
- <div class="hero-copy">
-  <div class="eyebrow">♡ Sizning ishonchli xarid do‘koningiz</div>
+<div class="hero-content">
 
-  <h1>QXV SHOP</h1>
+<div class="kicker">
+QADR • XIZMAT • VAFODORLIK
+</div>
 
-  <div class="script">
-   Siz uchun eng yaxshisi! ♡
-  </div>
+<h1>QXV</h1>
 
-  <p>
-   Sizning qulayligingiz va mamnunligingiz —
-   bizning asosiy maqsadimiz!
-  </p>
+<div class="motto">
+Siz uchun eng yaxshisi.
+</div>
 
-  <div class="hero-features">
-   🛡️ Sifat kafolati　 🚚 Tez yetkazib berish　
-   ♧ Doimiy qo‘llab-quvvatlash
-  </div>
- </div>
+<div class="hero-text">
+Premium tanlov, chiroyli taqdimot va ishonchli xizmat.
+QXV SHOP — yangi mahsulotlar va maxsus takliflar bilan
+<strong style="color:#e8c457">TEZ KUNDA</strong>.
+</div>
 
- <div class="gift-bag">
-  <div class="gift-text">
-   QXV
-   <small>SHOP</small>
-  </div>
- </div>
+<div class="buttons">
+<a class="btn gold" href="#products">
+TOVARLARNI KO‘RISH
+</a>
+
+<a class="btn dark" href="#payment">
+ONLINE TO‘LOV
+</a>
+</div>
+
+</div>
 </section>
 
-<section class="notice">
- <div class="notice-title">📣 YAXSHI XABAR!</div>
+<!-- VALUES -->
+<section class="values">
 
- <div class="soon">
-  TEZ KUNDA
- </div>
+<div class="value">
+<strong>QADR</strong>
+<span>Har bir mijoz biz uchun qadrlidir</span>
+</div>
 
- <p>
-  Siz uchun yangi mahsulotlar, qulay narxlar
-  va maxsus takliflar bilan qaytamiz!
- </p>
+<div class="value">
+<strong>XIZMAT</strong>
+<span>Qulay va zamonaviy xarid tajribasi</span>
+</div>
+
+<div class="value">
+<strong>VAFODORLIK</strong>
+<span>Ishonchni qadrlaydigan brend</span>
+</div>
+
 </section>
 
-<section class="products" id="products">
+<!-- PRODUCTS -->
+<section class="section" id="products">
 
- <div class="products-top">
-  <div>
-   <small>BIZNING MAHSULOTLAR</small>
-   <h2>Eng Mashhur Tovarlar</h2>
-  </div>
+<div class="heading">
+<div class="over">QXV SHOP COLLECTION</div>
 
-  <a class="all" href="#products">
-   Barchasini ko‘rish　›
-  </a>
- </div>
+<h2>
+Eng mashhur tovarlar
+</h2>
 
- <div class="grid">
+<p>
+Barcha mahsulotlar —
+<strong style="color:#e7bd50">
+QXV • TEZ KUNDA
+</strong>
+</p>
+</div>
 
-  <article class="card">
-   <div class="pic">
-    <span class="emoji">👜</span>
-    <span class="tag">TEZ KUNDA</span>
-   </div>
-   <h3>Mahsulot nomi</h3>
-   <div class="price">Narxi — tez kunda</div>
-   <button class="order"
-    onclick="order('Mahsulot nomi')">
-    ZAKAZ BERISH
-   </button>
-  </article>
+<div class="products">
 
-  <article class="card">
-   <div class="pic">
-    <span class="emoji">🎧</span>
-    <span class="tag">TEZ KUNDA</span>
-   </div>
-   <h3>Mahsulot nomi</h3>
-   <div class="price">Narxi — tez kunda</div>
-   <button class="order"
-    onclick="order('Mahsulot nomi')">
-    ZAKAZ BERISH
-   </button>
-  </article>
+<article class="card">
+<div class="product-img">
+<span class="icon">👜</span>
+<span class="soon">QXV • TEZ KUNDA</span>
+</div>
+<h3>Premium Collection</h3>
+<p class="price">Narxi — TEZ KUNDA</p>
+<button class="order"
+onclick="openOrder('Premium Collection')">
+ZAKAZ BERISH
+</button>
+</article>
 
-  <article class="card">
-   <div class="pic">
-    <span class="emoji">⌚</span>
-    <span class="tag">TEZ KUNDA</span>
-   </div>
-   <h3>Mahsulot nomi</h3>
-   <div class="price">Narxi — tez kunda</div>
-   <button class="order"
-    onclick="order('Mahsulot nomi')">
-    ZAKAZ BERISH
-   </button>
-  </article>
+<article class="card">
+<div class="product-img">
+<span class="icon">⌚</span>
+<span class="soon">QXV • TEZ KUNDA</span>
+</div>
+<h3>Exclusive Watch</h3>
+<p class="price">Narxi — TEZ KUNDA</p>
+<button class="order"
+onclick="openOrder('Exclusive Watch')">
+ZAKAZ BERISH
+</button>
+</article>
 
-  <article class="card">
-   <div class="pic">
-    <span class="emoji">👟</span>
-    <span class="tag">TEZ KUNDA</span>
-   </div>
-   <h3>Mahsulot nomi</h3>
-   <div class="price">Narxi — tez kunda</div>
-   <button class="order"
-    onclick="order('Mahsulot nomi')">
-    ZAKAZ BERISH
-   </button>
-  </article>
+<article class="card">
+<div class="product-img">
+<span class="icon">🎧</span>
+<span class="soon">QXV • TEZ KUNDA</span>
+</div>
+<h3>Premium Audio</h3>
+<p class="price">Narxi — TEZ KUNDA</p>
+<button class="order"
+onclick="openOrder('Premium Audio')">
+ZAKAZ BERISH
+</button>
+</article>
 
- </div>
+<article class="card">
+<div class="product-img">
+<span class="icon">👟</span>
+<span class="soon">QXV • TEZ KUNDA</span>
+</div>
+<h3>QXV Style</h3>
+<p class="price">Narxi — TEZ KUNDA</p>
+<button class="order"
+onclick="openOrder('QXV Style')">
+ZAKAZ BERISH
+</button>
+</article>
+
+</div>
 </section>
 
-</main>
+<!-- PAYMENT -->
+<section class="payment" id="payment">
 
-<footer id="about">
+<div class="over">
+QXV SHOP PAYMENT
+</div>
 
- <div class="founder-label">ASOSCHI</div>
+<h2>
+ONLINE TO‘LOV
+</h2>
 
- <div class="founder">
-  QXV Qobiljonov Xojiakbar Voxidjonovich
- </div>
+<p>
+Click orqali to‘lov imkoniyati
+<strong style="color:#e6bd52">
+TEZ KUNDA
+</strong>
+ishga tushadi.
+</p>
 
- <div class="social">
-  ◎ ✈ ♪ ▶
- </div>
+<a class="click"
+href="javascript:void(0)"
+onclick="alert('CLICK ONLINE TO‘LOV — TEZ KUNDA')">
 
- <div id="contact" class="contact-title">
-  Aloqa markazi
- </div>
+CLICK
 
- <a class="phone" href="tel:+998906101976">
-  📞 +998 90 610 19 76
- </a>
+<small>
+TO‘LOV — TEZ KUNDA
+</small>
+
+</a>
+
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+
+<div>
+
+<div class="footer-logo">
+QXV SHOP
+</div>
+
+<div class="call-label">
+CALL CENTER
+</div>
+
+<a class="phone"
+href="tel:+998906101976">
++998 90 610 19 76
+</a>
+
+</div>
+
+<div class="founder">
+
+<b>ASOSCHI</b>
+
+QOBILJONOV XOJIAKBAR
+VOXIDJON O‘G‘LI
+
+</div>
 
 </footer>
 
+<!-- ORDER MODAL -->
 <div class="modal" id="modal">
 
- <div class="box">
+<div class="box">
 
-  <h2>Buyurtma berish</h2>
+<h2>
+Zakaz berish
+</h2>
 
-  <div id="chosen"></div>
+<p id="selected"
+style="color:#cdbd97">
+</p>
 
-  <input id="name" placeholder="Ismingiz">
+<input
+id="name"
+placeholder="Ismingiz"
+>
 
-  <input
-   id="phone"
-   placeholder="Telefon raqamingiz"
-   inputmode="tel"
-  >
+<input
+id="phone"
+placeholder="Telefon raqamingiz"
+inputmode="tel"
+>
 
-  <textarea
-   id="note"
-   rows="3"
-   placeholder="Qo‘shimcha ma’lumot"
-  ></textarea>
+<textarea
+id="message"
+rows="3"
+placeholder="Qo‘shimcha ma’lumot">
+</textarea>
 
-  <div class="actions">
+<div class="actions">
 
-   <button class="send" onclick="sendOrder()">
-    Buyurtmani yuborish
-   </button>
+<button class="send"
+onclick="sendOrder()">
+Zakazni yuborish
+</button>
 
-   <button class="close" onclick="closeModal()">
-    Yopish
-   </button>
+<button class="close"
+onclick="closeOrder()">
+Yopish
+</button>
 
-  </div>
+</div>
 
-  <a class="phone" href="tel:+998906101976">
-   Aloqa: +998 90 610 19 76
-  </a>
-
- </div>
+</div>
 </div>
 
 <script>
 
-let selected = '';
+let selectedProduct="";
 
-function order(product){
- selected = product;
+function openOrder(product){
 
- document.getElementById('chosen').textContent =
-  'Tanlangan tovar: ' + product;
+selectedProduct=product;
 
- document.getElementById('modal')
-  .classList.add('show');
+document.getElementById("selected").textContent=
+"Tanlangan tovar: "+product;
+
+document.getElementById("modal")
+.classList.add("show");
+
 }
 
-function closeModal(){
- document.getElementById('modal')
-  .classList.remove('show');
+function closeOrder(){
+
+document.getElementById("modal")
+.classList.remove("show");
+
 }
 
 function sendOrder(){
 
- const name =
-  document.getElementById('name').value.trim();
+let name=
+document.getElementById("name").value.trim();
 
- const phone =
-  document.getElementById('phone').value.trim();
+let phone=
+document.getElementById("phone").value.trim();
 
- if(!name || !phone){
-  alert(
-   'Iltimos, ism va telefon raqamingizni kiriting.'
-  );
-  return;
- }
+if(!name || !phone){
 
- window.location.href =
-  'tel:+998906101976';
+alert(
+"Iltimos, ism va telefon raqamingizni kiriting."
+);
+
+return;
+
 }
 
-/* 8 SONIYALIK ZAGRUZKA */
-let n = 8;
+alert(
+"Zakazingiz qabul qilindi. Tez orada siz bilan bog‘lanamiz."
+);
 
-const timer = setInterval(() => {
+closeOrder();
 
- n--;
+}
 
- document.getElementById('counter')
-  .textContent = n;
+/* 8 -> 7 -> 6 -> ... -> 1 -> SAYT */
+let number=8;
 
- if(n <= 0){
+let timer=setInterval(function(){
 
-  clearInterval(timer);
+number--;
 
-  setTimeout(() => {
+document.getElementById("count")
+.textContent=number;
 
-   document.getElementById('loader')
-    .classList.add('out');
+if(number<=0){
 
-  },250);
- }
+clearInterval(timer);
+
+setTimeout(function(){
+
+document.getElementById("intro")
+.classList.add("hide");
+
+},250);
+
+}
 
 },1000);
 
